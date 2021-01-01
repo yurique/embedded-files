@@ -1,0 +1,13 @@
+*.idea
+*.bsp
+*.class
+*.log
+
+target
+project/project
+project/target
+.cache
+.classpath
+.project
+.settings
+bin

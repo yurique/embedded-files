@@ -1,0 +1,8 @@
+# check if the embedded files get created
+> compile
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/com/yurique/embedded/sbt/txt/test_file_1_txt.scala expected/__embedded_files/com/yurique/embedded/sbt/txt/test_file_1_txt.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/test_resource_txt.scala expected/__embedded_files/test_resource_txt.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/com/yurique/embedded/sbt/binary/test_bin_file_1_bin.scala expected/__embedded_files/com/yurique/embedded/sbt/binary/test_bin_file_1_bin.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/test/test_bin_resource_bin.scala expected/__embedded_files/test/test_bin_resource_bin.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedTextFile.scala expected/__embedded_files/EmbeddedTextFile.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedBinFile.scala expected/__embedded_files/EmbeddedBinFile.scala
