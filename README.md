@@ -199,7 +199,7 @@ Here, the file name doesn't start with a `/` – `dir/data.txt`.
 
 The calling site is in the `/home/user/.../project/src/main/scala/com/company/` directory.
 
-Those requested file is appended to this directory, resulting in `/home/user/.../project/src/main/scala/com/company/dir/data.txt`.
+The requested file name is appended to this directory, resulting in `/home/user/.../project/src/main/scala/com/company/dir/data.txt`.
 
 This file is taken relative to the first `scala` directory in the path, resulting in `/com/company/dir/data.txt`.
 
