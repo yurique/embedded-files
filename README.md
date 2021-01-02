@@ -131,7 +131,7 @@ package ${embedRootPackage.value}.${subPackage}
 
 object ${className} extends __embedded_files.EmbeddedBinFile {
 
-  val path: String = """path/to/the/file/filename.txt"""
+  val path: String = """path/to/the/file/filename.bin"""
 
   val content: Array[Byte] = Array(
     // example bytes
@@ -186,6 +186,7 @@ If the path passed to the macros starts with a slash, it is used as is.
 If it doesn't start with a slash, the macro does the following:
 
 `/home/user/.../project/src/main/scala/com/company/MyClass.scala`
+
 ```scala
 package com.company.MyClass
 
@@ -194,7 +195,7 @@ object MyClass {
 }
 ```
 
-Here, the file name doesn't start with a `/` – `dir/data.txt`. 
+Here, the file name doesn't start with a `/` – `dir/data.txt`.
 
 The calling site is in the `/home/user/.../project/src/main/scala/com/company/` directory.
 
@@ -205,4 +206,3 @@ This file is taken relative to the first `scala` directory in the path, resultin
 ## Missing embedded files
 
 The macros are not currently doing any checks for whether the embedded files exist. If they don't, the scalac will just fail to compile in a normal way.
-
