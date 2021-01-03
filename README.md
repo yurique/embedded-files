@@ -11,13 +11,13 @@ And an acompanying macro to more easily access those objects.
 ### `plugins.sbt`
 
 ```scala
-addSbtPlugin("com.yurique" % "sbt-embedded-files" % "0.1.0")
+addSbtPlugin("com.yurique" % "sbt-embedded-files" % "0.1.1")
 ```
 
 ### `build.sbt`
 
 ```scala
- libraryDependencies += "com.yurique" %%% "embedded-files-macro" % "0.1.0"
+ libraryDependencies += "com.yurique" %%% "embedded-files-macro" % "0.1.1"
 ```
 
 ## Example usage

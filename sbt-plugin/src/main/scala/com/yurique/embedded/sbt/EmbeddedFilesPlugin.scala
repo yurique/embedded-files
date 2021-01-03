@@ -237,7 +237,7 @@ object EmbeddedFilesPlugin extends AutoPlugin {
             .map("0x" + _)
             .mkString(", ")
         )
-        .mkString("\n    ")}
+        .mkString(",\n    ")}
           |  )
           |
           |}

@@ -1,4 +1,4 @@
-ThisBuild / version := "0.1.0"
+ThisBuild / version := "0.1.1"
 ThisBuild / organization := "com.yurique"
 ThisBuild / description := "An sbt plugin that generates scala objects embedding the contents of files."
 ThisBuild / bintrayRepository := "sbt-plugins"
