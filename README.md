@@ -2,9 +2,9 @@
 
 # embedded-files
 
-An sbt plugin to create Scala objects containing the contents of the files as `String`s or `Array[Byte]`s.
+An sbt plugin to generate Scala objects containing the contents of glob-specified files as strings or byte-arrays.
 
-And an acompanying macro to more easily access those objects.
+And an acompanying macro allowing to access those objects more easily.
 
 ## Installation
 
