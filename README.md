@@ -1,5 +1,3 @@
-![Maven Central](https://img.shields.io/maven-central/v/com.yurique/embedded-files-macro_sjs1_2.13.svg)
-
 # embedded-files
 
 An sbt plugin to generate Scala objects containing the contents of glob-specified files as strings or byte-arrays.
