@@ -2,7 +2,7 @@
 
 An sbt plugin to generate Scala objects containing the contents of glob-specified files as strings or byte-arrays.
 
-The acompanying macro allowing to access those objects more easily: [embedded-files-macro](https://github.com/yurique/embedded-files-macro).
+The accompanying macro allowing to access those objects more easily: [embedded-files-macro](https://github.com/yurique/embedded-files-macro).
 
 ## Installation
 
