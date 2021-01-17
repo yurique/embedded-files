@@ -1,4 +1,8 @@
-.vscode
-.metals
+target
 .idea
+.bsp
+.bloop
+.metals
+.vscode
+metals.sbt
 .DS_Store
