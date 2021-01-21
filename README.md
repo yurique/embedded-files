@@ -31,6 +31,8 @@ Add `embedFiles` to the `Compile / sourceGenerators`:
 ```scala
   project
     // ...
+    .enablePlugins(EmbeddedFilesPlugin)
+    // ...
     .settings(
       (Compile / sourceGenerators) += embedFiles
     )
