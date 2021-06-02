@@ -1,5 +1,3 @@
-![Maven Central](https://img.shields.io/maven-central/v/com.yurique/embedded-files_2.12.svg)
-
 # embedded-files
 
 An sbt plugin to generate Scala objects containing the contents of glob-specified files as strings or byte-arrays.
