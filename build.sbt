@@ -1,8 +1,11 @@
 inThisBuild(
   List(
     organization := "com.yurique",
-    description := "An sbt plugin that generates scala objects embedding the contents of files.",
+    homepage := Some(url("https://github.com/yurique/embedded-files")),
     licenses += ("MIT", url("https://github.com/yurique/embedded-files/LICENSE")),
+    developers := List(Developer("yurique", "Iurii Malchenko", "i@yurique.com", url("https://github.com/yurique"))),
+    description := "An sbt plugin that generates Scala objects embedding the contents of files.",
+    scmInfo := Some(ScmInfo(url("https://github.com/yurique/embedded-files"), "scm:git@github.com/yurique/embedded-files.git")),
     githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("scripted"))),
     githubWorkflowTargetTags ++= Seq("v*"),
     githubWorkflowPublishTargetBranches := Seq(RefPredicate.StartsWith(Ref.Tag("v"))),
