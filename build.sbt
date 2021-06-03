@@ -15,12 +15,12 @@ inThisBuild(
       "PGP_SECRET" -> s"$${{ secrets.PGP_SECRET }}",
       "SONATYPE_PASSWORD" -> s"$${{ secrets.SONATYPE_PASSWORD }}",
       "SONATYPE_USERNAME" -> s"$${{ secrets.SONATYPE_USERNAME }}"
-    ))
+    )),
+    scalaVersion := "2.12.14"
   )
 )
 
 name := "sbt-embedded-files"
-scalaVersion := "2.12.14"
 sbtPlugin := true
 publishMavenStyle := true
 console / initialCommands := """import com.yurique.embedded.sbt._"""
