@@ -228,7 +228,7 @@ object EmbeddedFilesPlugin extends AutoPlugin {
         "\\\"\\\"\\\""
       )}\"\"\"
           |
-          |  //format:off
+          |  //format: off
           |  val content: Array[Byte] = Array(
           |    ${IO
         .readBytes(input.toFile)
