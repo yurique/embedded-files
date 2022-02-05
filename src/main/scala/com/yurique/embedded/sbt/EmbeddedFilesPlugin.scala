@@ -194,13 +194,13 @@ object EmbeddedFilesPlugin extends AutoPlugin {
           |object $className extends ${rootPackage}.EmbeddedTextFile {
           |
           |  val path: String = \"\"\"${relative.toString.replaceAllLiterally(
-        "\"\"\"",
-        "\\\"\\\"\\\""
-      )}\"\"\"
+           "\"\"\"",
+           "\\\"\\\"\\\""
+         )}\"\"\"
           |
           |  val content: String = \"\"\"${IO
-        .read(input.toFile)
-        .replaceAllLiterally("\"\"\"", "\\\"\\\"\\\"")}\"\"\"
+           .read(input.toFile)
+           .replaceAllLiterally("\"\"\"", "\\\"\\\"\\\"")}\"\"\"
           |
           |}
           |""".stripMargin
@@ -224,21 +224,21 @@ object EmbeddedFilesPlugin extends AutoPlugin {
           |object $className extends ${rootPackage}.EmbeddedBinFile {
           |
           |  val path: String = \"\"\"${relative.toString.replaceAllLiterally(
-        "\"\"\"",
-        "\\\"\\\"\\\""
-      )}\"\"\"
+           "\"\"\"",
+           "\\\"\\\"\\\""
+         )}\"\"\"
           |
           |  //format: off
           |  val content: Array[Byte] = Array(
           |    ${IO
-        .readBytes(input.toFile)
-        .grouped(16)
-        .map(
-          _.map(_.toHexString.reverse.padTo(2, '0').reverse)
-            .map("0x" + _)
-            .mkString(", ")
-        )
-        .mkString(",\n    ")}
+           .readBytes(input.toFile)
+           .grouped(16)
+           .map(
+             _.map(_.toHexString.reverse.padTo(2, '0').reverse)
+               .map("0x" + _)
+               .mkString(", ")
+           )
+           .mkString(",\n    ")}
           |  )
           |
           |}
@@ -291,17 +291,17 @@ object EmbeddedFilesPlugin extends AutoPlugin {
           |object EmbeddedFilesIndex {
           |  val textFiles: Seq[(String, EmbeddedTextFile)] = Seq(
           |    ${textInputs
-        .map { case (path, packageName, className) =>
-          s""""${path.toString}" -> ${packageName}.${className}"""
-        }
-        .mkString(",\n    ")}
+           .map { case (path, packageName, className) =>
+             s""""${path.toString}" -> ${packageName}.${className}"""
+           }
+           .mkString(",\n    ")}
           |  )
           |  val binFiles: Seq[(String, EmbeddedBinFile)] = Seq(
           |    ${binInputs
-        .map { case (path, packageName, className) =>
-          s""""${path.toString}" -> ${packageName}.${className}"""
-        }
-        .mkString(",\n    ")}
+           .map { case (path, packageName, className) =>
+             s""""${path.toString}" -> ${packageName}.${className}"""
+           }
+           .mkString(",\n    ")}
           |  )
           |}
           |""".stripMargin
