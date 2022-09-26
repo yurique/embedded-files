@@ -128,7 +128,7 @@ object EmbeddedFilesPlugin extends AutoPlugin {
           }
       }
       if (embedGenerateIndex.value) {
-        val generatedClasses = needToEmbed.flatMap { path =>
+        val generatedClasses = sourceMap.values.flatMap { path =>
           embedDirectories.value
             .flatMap(path.toFile.relativeTo)
             .headOption
