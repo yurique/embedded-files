@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3
+
+Fix index generation (during incremental compilation, the index was getting overwritten with added 
+files only). Thanks @lewisjkl! (https://github.com/yurique/embedded-files/pull/56)
+
 ## 0.2.2
 
 Rolling back sbt to 1.4.9.

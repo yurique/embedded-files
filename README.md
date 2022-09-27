@@ -9,7 +9,7 @@ The accompanying macro allowing to access those objects more easily: [embedded-f
 ### `plugins.sbt`
 
 ```scala
-addSbtPlugin("com.yurique" % "sbt-embedded-files" % "0.2.2")
+addSbtPlugin("com.yurique" % "sbt-embedded-files" % "0.2.3")
 ```
 
 ### `build.sbt`
@@ -205,4 +205,4 @@ This file is taken relative to the first `scala` directory in the path, resultin
 
 ## Missing embedded files
 
-The macros are not currently doing any checks for whether the embedded files exist. If they don't, the scalac will just fail to compile in a normal way.
+The macros are not currently doing any checks for whether the embedded files exist. If they don't, `scalac` will just fail to compile.
