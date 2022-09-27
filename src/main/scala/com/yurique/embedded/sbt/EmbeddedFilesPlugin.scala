@@ -148,12 +148,16 @@ object EmbeddedFilesPlugin extends AutoPlugin {
             }
         }
         buildIndexFile(
-          textInputs = generatedClasses.toSeq.collect { case (false, generatedClassInfo) =>
-            generatedClassInfo
-          },
-          binInputs = generatedClasses.toSeq.collect { case (true, generatedClassInfo) =>
-            generatedClassInfo
-          },
+          textInputs = generatedClasses.toSeq
+            .collect { case (false, generatedClassInfo) =>
+              generatedClassInfo
+            }
+            .sortBy(_.toString()),
+          binInputs = generatedClasses.toSeq
+            .collect { case (true, generatedClassInfo) =>
+              generatedClassInfo
+            }
+            .sortBy(_.toString()),
           output = outputPath(rootPackage, "EmbeddedFilesIndex"),
           packageName = rootPackage
         )

@@ -7,3 +7,15 @@ $ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/test/tes
 $ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedTextFile.scala expected/__embedded_files/EmbeddedTextFile.scala
 $ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedBinFile.scala expected/__embedded_files/EmbeddedBinFile.scala
 $ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedFilesIndex.scala expected/__embedded_files/EmbeddedFilesIndex.scala
+$ copy file-to-add.txt src/main/resources/
+$ copy file-to-add.bin src/main/resources/
+> compile
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/com/yurique/embedded/sbt/txt/test_file_1_txt.scala expected-2/__embedded_files/com/yurique/embedded/sbt/txt/test_file_1_txt.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/test_resource_txt.scala expected-2/__embedded_files/test_resource_txt.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/file_to_add_txt.scala expected-2/__embedded_files/file_to_add_txt.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/file_to_add_bin.scala expected-2/__embedded_files/file_to_add_bin.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/com/yurique/embedded/sbt/binary/test_bin_file_1_bin.scala expected-2/__embedded_files/com/yurique/embedded/sbt/binary/test_bin_file_1_bin.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/test/test_bin_resource_bin.scala expected-2/__embedded_files/test/test_bin_resource_bin.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedTextFile.scala expected-2/__embedded_files/EmbeddedTextFile.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedBinFile.scala expected-2/__embedded_files/EmbeddedBinFile.scala
+$ must-mirror target/scala-2.13/src_managed/main/scala/__embedded_files/EmbeddedFilesIndex.scala expected-2/__embedded_files/EmbeddedFilesIndex.scala
