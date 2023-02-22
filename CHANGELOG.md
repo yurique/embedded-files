@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+[Laika](https://planet42.github.io/Laika) transform support.
+
 ## 0.2.3
 
 Fix index generation (during incremental compilation, the index was getting overwritten with added 

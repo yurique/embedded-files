@@ -173,9 +173,7 @@ object EmbeddedFilesIndex {
 
 ## Laika transform (markdown)
 
-It is possible to configure a basic markdown -> HTML transformation (using [Laika](https://planet42.github.io/Laika)).
-
-The feature is in its early stages thus configurability is very limited:
+It is possible to configure a basic transformation for text files using [Laika](https://planet42.github.io/Laika).
 
 
 ```scala
