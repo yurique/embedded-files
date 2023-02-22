@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+Removed a bad println.
+
 ## 0.3.0
 
 [Laika](https://planet42.github.io/Laika) transform support.
