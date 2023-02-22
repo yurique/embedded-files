@@ -173,7 +173,7 @@ object EmbeddedFilesIndex {
 
 ## Transforming text
 
-It is possible to configure a basic transformation for text files using.
+It is possible to configure a basic `String => String` transformation for text files.
 
 
 ```scala
@@ -192,7 +192,7 @@ project
   )
 ```
 
-For each text file, the `.transform` function of the first of the `TransformConfig`-s to match the path (`.when` returns `true`) 
+For each text file, the `.transform` function of the first of the `TransformConfig`-s that matches the path (`.when` returns `true`) 
 will be applied to the contents of the file.
 
 If none of the configuration matches - the file contents will be used as is.
