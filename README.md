@@ -9,7 +9,7 @@ The accompanying macro allowing to access those objects more easily: [embedded-f
 ### `plugins.sbt`
 
 ```scala
-addSbtPlugin("com.yurique" % "sbt-embedded-files" % "0.2.3")
+addSbtPlugin("com.yurique" % "sbt-embedded-files" % "0.4.0")
 ```
 
 ### `build.sbt`
