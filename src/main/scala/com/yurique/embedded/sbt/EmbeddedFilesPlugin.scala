@@ -2,21 +2,30 @@ package com.yurique.embedded.sbt
 
 import sbt._
 import sbt.Keys._
+
 import java.nio.file.Files
 import java.nio.file.Path
 import sbt.nio.Keys._
+import laika.api.Transformer
 
 object EmbeddedFilesPlugin extends AutoPlugin {
 
   override def trigger = noTrigger
 
   object autoImport {
+
+    case class TransformConfig(
+        when: Path => Boolean,
+        transformer: Transformer
+    )
+
     val embedFiles = taskKey[Seq[File]]("Creates an ExternalFile object with a content field for each file.")
     val embedRootPackage = settingKey[String]("Root package for generated classes (default: __embedded_files)")
     val embedDirectories = settingKey[Seq[File]]("Directories to look for files in (default: Compile / unmanagedResourceDirectories)")
     val embedTextGlobs = settingKey[Seq[String]]("glob patterns for text files (default: Seq(**/*.txt))")
     val embedBinGlobs = settingKey[Seq[String]]("glob patterns for binary files (default: Seq.empty)")
     val embedGenerateIndex = settingKey[Boolean]("Whether or not to generate the EmbeddedFilesIndex object (default: false)")
+    val embedTransform = settingKey[Seq[TransformConfig]]("Transform configuration (markdown -> html, etc")
   }
 
   import autoImport._
@@ -29,6 +38,7 @@ object EmbeddedFilesPlugin extends AutoPlugin {
     embedTextGlobs := Seq("**/*.txt"),
     embedBinGlobs := Seq.empty,
     embedGenerateIndex := false,
+    embedTransform := Seq.empty,
     embedFiles / fileInputs ++= embedDirectories.value.flatMap(embedDirectory =>
       embedTextGlobs.value.map(glob => embedDirectory.toGlob / glob)
     ),
@@ -92,6 +102,9 @@ object EmbeddedFilesPlugin extends AutoPlugin {
       val updatedPaths = (changes.created ++ changes.modified).toSet
       val needToEmbed =
         updatedPaths ++ sourceMap.filterKeys(!existingTargets(_)).values
+
+      val transform = embedTransform.value
+
       needToEmbed.foreach { path =>
         embedDirectories.value
           .flatMap(path.toFile.relativeTo)
@@ -122,7 +135,8 @@ object EmbeddedFilesPlugin extends AutoPlugin {
                 output = fileOutputPath,
                 rootPackage = rootPackage,
                 packageName = filePackageName,
-                className = fileClassName
+                className = fileClassName,
+                transform = transform
               )
             }
           }
@@ -190,8 +204,21 @@ object EmbeddedFilesPlugin extends AutoPlugin {
       output: Path,
       rootPackage: String,
       packageName: String,
-      className: String
+      className: String,
+      transform: Seq[TransformConfig]
   ): Unit = {
+
+    def doTransform(s: String): String =
+      transform.find(_.when(input)).fold(s) { transform =>
+        transform.transformer.transform(s).fold(throw _, identity)
+      }
+
+    println(s"transform: $transform")
+
+    val fileContent =
+      doTransform(IO.read(input.toFile))
+        .replaceAllLiterally("\"\"\"", "\\\"\\\"\\\"")
+
     val str =
       s"""|package $packageName
           |
@@ -202,9 +229,7 @@ object EmbeddedFilesPlugin extends AutoPlugin {
            "\\\"\\\"\\\""
          )}\"\"\"
           |
-          |  val content: String = \"\"\"${IO
-           .read(input.toFile)
-           .replaceAllLiterally("\"\"\"", "\\\"\\\"\\\"")}\"\"\"
+          |  val content: String = \"\"\"$fileContent\"\"\"
           |
           |}
           |""".stripMargin

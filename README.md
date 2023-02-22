@@ -171,6 +171,50 @@ object EmbeddedFilesIndex {
 }
 ```
 
+## Laika transform (markdown)
+
+It is possible to configure a basic markdown -> HTML transformation (using [Laika](https://planet42.github.io/Laika)).
+
+The feature is in its early stages thus configurability is very limited:
+
+
+```scala
+import laika.api.Transformer
+import laika.ast.Path.Root
+import laika.format.{AST, HTML, Markdown, ReStructuredText, XSLFO}
+import laika.markdown.bundle.VerbatimHTML
+import laika.markdown.github.GitHubFlavor
+import laika.parse.code.SyntaxHighlighting
+import laika.rewrite.link.LinkConfig
+
+project
+  // ...
+  .settings(
+    embedDirectories ++= (Compile / unmanagedSourceDirectories).value,
+    embedTextGlobs := Seq("**/*.md"),
+    embedTransform := Seq(
+      TransformConfig(
+        when = _.getFileName.toString.endsWith(".md"),
+        transformer =
+          Transformer
+            .from(Markdown)
+            .to(HTML)
+            .using(GitHubFlavor, VerbatimHTML, SyntaxHighlighting)
+            .withConfigValue(LinkConfig(excludeFromValidation = Seq(Root)))
+            .build
+      )
+    ),
+    (Compile / sourceGenerators) += embedFiles
+  )
+```
+
+For each text file, the `.transformer` of the first of the `TransformConfig`-s to match the path (`.when` returns `true`) 
+will be applied to the contents of the file.
+
+If none of the configuration matches - the file contents will be used as is.
+
+If more than one configuration matches, only the first one will be used.
+
 ## macros
 
 Assuming the `embedFiles` is used as a source generator with the default root package, you can use the macros provided by the `embedded-files-macro` library to get the string/byte-array content of the files like this:
