@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+Replace Laika with a generic `String => String` transformations.
+
 ## 0.3.1
 
 Removed a bad println.

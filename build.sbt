@@ -27,8 +27,4 @@ console / initialCommands := """import com.yurique.embedded.sbt._"""
 enablePlugins(ScriptedPlugin)
 scriptedLaunchOpts ++=
   Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
-libraryDependencies ++= Seq(
-  "org.planet42" %% "laika-core" % "0.19.0", // % Provided,
-  "org.planet42" %% "laika-core" % "0.19.0" % Test
-)
 // test := scripted.value

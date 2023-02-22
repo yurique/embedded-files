@@ -6,7 +6,6 @@ import sbt.Keys._
 import java.nio.file.Files
 import java.nio.file.Path
 import sbt.nio.Keys._
-import laika.api.Transformer
 
 object EmbeddedFilesPlugin extends AutoPlugin {
 
@@ -16,7 +15,7 @@ object EmbeddedFilesPlugin extends AutoPlugin {
 
     case class TransformConfig(
         when: Path => Boolean,
-        transformer: Transformer
+        transform: String => String
     )
 
     val embedFiles = taskKey[Seq[File]]("Creates an ExternalFile object with a content field for each file.")
@@ -209,9 +208,7 @@ object EmbeddedFilesPlugin extends AutoPlugin {
   ): Unit = {
 
     def doTransform(s: String): String =
-      transform.find(_.when(input)).fold(s) { transform =>
-        transform.transformer.transform(s).fold(throw _, identity)
-      }
+      transform.find(_.when(input)).fold(s)(_.transform(s))
 
     val fileContent =
       doTransform(IO.read(input.toFile))
