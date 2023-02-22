@@ -213,8 +213,6 @@ object EmbeddedFilesPlugin extends AutoPlugin {
         transform.transformer.transform(s).fold(throw _, identity)
       }
 
-    println(s"transform: $transform")
-
     val fileContent =
       doTransform(IO.read(input.toFile))
         .replaceAllLiterally("\"\"\"", "\\\"\\\"\\\"")
