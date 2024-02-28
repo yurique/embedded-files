@@ -16,7 +16,7 @@ inThisBuild(
       "SONATYPE_PASSWORD" -> s"$${{ secrets.SONATYPE_PASSWORD }}",
       "SONATYPE_USERNAME" -> s"$${{ secrets.SONATYPE_USERNAME }}"
     )),
-    scalaVersion := "2.12.15"
+    scalaVersion := "2.12.19"
   )
 )
 
