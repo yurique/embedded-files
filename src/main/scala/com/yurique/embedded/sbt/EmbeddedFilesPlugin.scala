@@ -155,9 +155,13 @@ object EmbeddedFilesPlugin extends AutoPlugin {
                   )
                   .exists(_.matches(path))
 
-              isBinary -> (relative, packageName(relative), className(
-                relative
-              ))
+              isBinary -> (
+                relative,
+                packageName(relative),
+                className(
+                  relative
+                )
+              )
             }
         }
         buildIndexFile(
